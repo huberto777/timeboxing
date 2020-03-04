@@ -1,0 +1,76 @@
+.App {
+    font-family: sans-serif;
+}
+
+.Timebox {
+    border: $default-border;
+    border-radius: $border-radius;
+    padding: 5px;
+    margin-bottom: 10px;
+    background-color: #ffaaaa;
+}
+
+.TimeboxEditor,
+.TimeboxCreator {
+    text-align: right;
+    border: $default-border;
+    border-radius: $border-radius;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+.TimeboxCreator {
+    background-color: lighten(aqua, 40);
+}
+
+.TimeboxEditor {
+    background-color: darken(aquamarine, 50);
+    color: white
+}
+
+
+input {
+    min-width: 60%;
+    margin-left: 20px;
+    font-size: 16px;
+    border: $default-border;
+    border-radius: $border-radius;
+    padding: 10px 10px;
+}
+
+button {
+    font-size: 16px;
+    margin-left: 10px;
+    border-radius: $border-radius;
+    border: $default-border;
+    padding: 5px 5px;
+}
+
+.del,
+.edit,
+.add,
+.cancel,
+.update {
+    color: white;
+
+}
+
+.del {
+    background-color: red;
+}
+
+.edit {
+    background-color: green;
+}
+
+.add {
+    background-color: darken(grey, 10);
+}
+
+.cancel {
+background-color: blue;
+}
+
+.update {
+    background-color: orange;
+}
