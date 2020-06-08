@@ -3,17 +3,18 @@ import React, { Component } from "react";
 class EditTimebox extends Component {
   state = {
     title: this.props.timebox.title,
-    totalTimeInMinutes: this.props.timebox.totalTimeInMinutes
+    totalTimeInMinutes: this.props.timebox.totalTimeInMinutes,
   };
-  handleInput = e => {
+  handleInput = (e) => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
   update = () => {
     const { timebox, onUpdate } = this.props;
     const { title, totalTimeInMinutes } = this.state;
-    if (title.length < 3 || totalTimeInMinutes <= 0) return;
+    if (title.length < 3 || totalTimeInMinutes <= 0)
+      return alert("complete all fields");
     onUpdate({ ...timebox, title, totalTimeInMinutes });
   };
   render() {
@@ -40,7 +41,9 @@ class EditTimebox extends Component {
         <button className="update" type="submit" onClick={this.update}>
           update
         </button>
-        <button className="cancel" onClick={cancelEdit}>cancel</button>
+        <button className="cancel" onClick={cancelEdit}>
+          cancel
+        </button>
       </div>
     );
   }
