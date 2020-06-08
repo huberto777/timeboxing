@@ -1,8 +1,7 @@
 import React from "react";
 
 const Timebox = ({
-  title,
-  totalTimeInMinutes,
+  timebox,
   onDelete,
   onEdit,
   isEditable
@@ -10,7 +9,7 @@ const Timebox = ({
   <>
     <div className="Timebox">
       <h3>
-        {title} - {totalTimeInMinutes} min.
+        {timebox.title} - {timebox.totalTimeInMinutes} min.
       </h3>
 
       {isEditable || (

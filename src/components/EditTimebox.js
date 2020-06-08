@@ -2,8 +2,8 @@ import React, { Component } from "react";
 
 class EditTimebox extends Component {
   state = {
-    title: this.props.title,
-    totalTimeInMinutes: this.props.totalTimeInMinutes
+    title: this.props.timebox.title,
+    totalTimeInMinutes: this.props.timebox.totalTimeInMinutes
   };
   handleInput = e => {
     this.setState({
@@ -11,10 +11,10 @@ class EditTimebox extends Component {
     });
   };
   update = () => {
-    const { id, onUpdate } = this.props;
+    const { timebox, onUpdate } = this.props;
     const { title, totalTimeInMinutes } = this.state;
     if (title.length < 3 || totalTimeInMinutes <= 0) return;
-    onUpdate(id, { id, title, totalTimeInMinutes });
+    onUpdate({ ...timebox, title, totalTimeInMinutes });
   };
   render() {
     const { title, totalTimeInMinutes } = this.state;

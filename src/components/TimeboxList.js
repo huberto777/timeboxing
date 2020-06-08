@@ -12,85 +12,80 @@ class TimeboxList extends Component {
         {
           id: "a",
           title: "uczę sie reacta",
-          totalTimeInMinutes: 10
+          totalTimeInMinutes: 10,
         },
         {
           id: "b",
           title: "uczę sie laravela",
-          totalTimeInMinutes: 23
+          totalTimeInMinutes: 23,
         },
         {
           id: "c",
           title: "uczę sie js es6",
-          totalTimeInMinutes: 22
-        }
-      ]
+          totalTimeInMinutes: 22,
+        },
+      ],
     };
   }
 
-  handleCreate = createdTimebox => {
-    this.setState(prevState => ({
-      timeboxes: [createdTimebox, ...prevState.timeboxes] // dodajemy element na początku tablicy
+  handleCreate = (createdTimebox) => {
+    this.setState((prevState) => ({
+      timeboxes: [createdTimebox, ...prevState.timeboxes], // dodajemy element na początku tablicy
     }));
   };
 
-  handleDelete = id => {
-    const index = this.state.timeboxes.findIndex(timebox => timebox.id === id);
+  handleDelete = ({ id }) => {
+    const index = this.state.timeboxes.findIndex(
+      (timebox) => timebox.id === id
+    );
     this.state.timeboxes.splice(index, 1);
-    this.setState(prevState => ({
-      timeboxes: prevState.timeboxes
+    this.setState((prevState) => ({
+      timeboxes: prevState.timeboxes,
     }));
   };
 
-  handleEditTimebox = (id, title, totalTimeInMinutes, isEditable) => {
+  handleEditTimebox = (timebox) => {
     this.setState({
-      id,
-      title,
-      totalTimeInMinutes,
-      isEditable: true
+      timebox,
+      isEditable: true,
     });
   };
 
   cancelEdit = () => {
     this.setState({
-      isEditable: false
+      isEditable: false,
     });
   };
 
-  handleUpdateTimebox = (id, updatedTimebox) => {
+  handleUpdateTimebox = (updatedTimebox) => {
     this.setState({
-      timeboxes: this.state.timeboxes.map(timebox =>
-        timebox.id === id ? updatedTimebox : timebox
+      timeboxes: this.state.timeboxes.map((timebox) =>
+        timebox.id === updatedTimebox.id ? updatedTimebox : timebox
       ),
-      isEditable: false
+      isEditable: false,
     });
   };
 
   render() {
-    const { isEditable, id, title, totalTimeInMinutes } = this.state;
+    const { isEditable, timebox } = this.state;
     return (
       <>
         {isEditable ? (
           <EditTimebox
-            id={id}
-            title={title}
-            totalTimeInMinutes={totalTimeInMinutes}
+            timebox={timebox}
             onUpdate={this.handleUpdateTimebox}
             cancelEdit={this.cancelEdit}
           />
         ) : (
           <>
             <TimeboxCreator onCreate={this.handleCreate} />
-            {this.state.timeboxes.map(({ id, title, totalTimeInMinutes }) => (
+            {this.state.timeboxes.map((timebox) => (
               <Timebox
-                key={id}
-                title={title}
+                key={timebox.id}
+                timebox={timebox}
+                onDelete={() => this.handleDelete(timebox)}
+                onEdit={() => this.handleEditTimebox(timebox)}
                 isEditable={isEditable}
-                totalTimeInMinutes={totalTimeInMinutes}
-                onDelete={() => this.handleDelete(id)}
-                onEdit={() =>
-                  this.handleEditTimebox(id, title, totalTimeInMinutes)
-                }
               />
             ))}
           </>

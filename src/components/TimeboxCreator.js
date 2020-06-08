@@ -4,26 +4,27 @@ import { v4 as uuidv4 } from "uuid";
 class TimeboxCreator extends Component {
   state = {
     title: "",
-    totalTimeInMinutes: ""
+    totalTimeInMinutes: "",
   };
-  handleInputChange = e => {
+  handleInputChange = (e) => {
     this.setState({
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   add = () => {
     const { onCreate } = this.props;
     const { title, totalTimeInMinutes } = this.state;
-    if (title.length < 3 || totalTimeInMinutes <= 0) return;
+    if (title.length < 3 || totalTimeInMinutes <= 0)
+      return alert("complete all fields");
     onCreate({
       id: uuidv4(),
       title,
-      totalTimeInMinutes
+      totalTimeInMinutes,
     });
     this.setState({
       title: "",
-      totalTimeInMinutes: ""
+      totalTimeInMinutes: "",
     });
   };
   render() {
@@ -51,7 +52,9 @@ class TimeboxCreator extends Component {
           />
         </label>
         <br />
-        <button className="add" onClick={this.add}>dodaj timebox</button>
+        <button className="add" onClick={this.add}>
+          dodaj timebox
+        </button>
       </div>
     );
   }
